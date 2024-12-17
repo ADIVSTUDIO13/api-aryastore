@@ -28,21 +28,31 @@ res.json(loghandler.notapikey)
 }
 })
 router.get('/downloader/tiktok', async (req, res, next) => {
-var url = req.query.url
-var apikey = req.query.apikey
-if (!url) return res.json(loghandler.noturl)
-if (!apikey) return res.json(loghandler.notapikey)
-if(listkey.includes(apikey)){
-let anu = await fetchJson(`https://api.lolhuman.xyz/api/tiktok?url=${url}&apikey=b9972cae27237ab59e8aa1a6`)
-res.json({
-status: true,
-creator: `${creator}`,
-result: anu.result
-})
-} else {
-res.json(loghandler.notapikey)
-}
-})
+    var url = req.query.url || 'https://vt.tiktok.com/ZS6R7NgUs/'; // Tambahkan URL default
+    var apikey = req.query.apikey;
+
+    if (!apikey) return res.json(loghandler.notapikey); // Periksa API key
+
+    if (listkey.includes(apikey)) { // Validasi API key
+        try {
+            let anu = await fetchJson(`https://api.lolhuman.xyz/api/tiktok?url=${url}&apikey=b9972cae27237ab59e8aa1a6`);
+            res.json({
+                status: true,
+                creator: `${creator}`,
+                result: anu.result
+            });
+        } catch (error) {
+            res.json({
+                status: false,
+                message: "Error fetching data from API.",
+                error: error.message
+            });
+        }
+    } else {
+        res.json(loghandler.notapikey);
+    }
+});
+
 router.get('/downloader/ytplay', async (req, res, next) => {
 var q = req.query.q
 var apikey = req.query.apikey
@@ -1305,16 +1315,28 @@ res.json(loghandler.notapikey)
 
 // - TOOLS MENU - \\
 router.get('/tools/ssweb', async (req, res, next) => {
-var url = req.query.url
-var apikey = req.query.apikey
-if (!url) return res.json(loghandler.noturl)
-if (!apikey) return res.json(loghandler.notapikey)
-if(listkey.includes(apikey)){
-let result = await getBuffer(`https://saipulanuar.ga/api/download/ssweb?url=${url}`)
-res.set({'Content-Type': 'image/jpg'})
-res.send(result)
-} else {
-res.json(loghandler.notapikey)
-}
-})
+    var url = req.query.url;
+    var apikey = req.query.apikey;
+
+    if (!url) return res.json(loghandler.noturl);
+    if (!apikey) return res.json(loghandler.notapikey);
+
+    if (listkey.includes(apikey)) {
+        try {
+            // Gunakan API yang diminta
+            let result = await getBuffer(`https://api.lolhuman.xyz/api/ssweb?apikey=b9972cae27237ab59e8aa1a6&url=${url}`);
+            res.set({ 'Content-Type': 'image/jpg' });
+            res.send(result);
+        } catch (error) {
+            console.error(error);
+            res.json({
+                status: false,
+                message: "Terjadi kesalahan saat mengambil screenshot web."
+            });
+        }
+    } else {
+        res.json(loghandler.notapikey);
+    }
+});
+
 module.exports = router
