@@ -1327,18 +1327,5 @@ res.send(result)
 res.json(loghandler.notapikey)
 }
 })
-//- tools entertainet
-// router.get('/tools/family100' , async (req, res, next) => {
-//    var question = req.question || 'berapa presiden di indonesia?';
-//   var apikey = req.query.apikey;
-//   if (!question) return res.json(loghandler.notquestion)
-//   if (!apikey) return res.json(loghandler.notapikey)
-//   if(listkey.includes(apikey)){
-//   let result = await getBuffer(`https://api.lolhuman.xyz/api/tebak/family100?question=${question}&apikey=${lolkey}`)
-// res.set({'Content-Type': 'text/plain'});
-// res.send(result)
-// } else {
-// res.json(loghandler.notapikey)
-// }
-// })  
+
 module.exports = router
