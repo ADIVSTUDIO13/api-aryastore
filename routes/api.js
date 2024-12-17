@@ -17,7 +17,7 @@ var apikey = req.query.apikey
 if (!url) return res.json(loghandler.noturl)  
 if (!apikey) return res.json(loghandler.notapikey)
 if(listkey.includes(apikey)){
-let anu = await fetchJson(`https://api.botcahx.biz.id/api/dowloader/fbdown?url=${url}&apikey=Admin`)
+let anu = await fetchJson(`https://api.botcahx.biz.id/api/dowloader/fbdown?url=${url}&apikey=b9972cae27237ab59e8aa1a6`)
 res.json({
 status: true,
 creator: `${creator}`,
@@ -33,7 +33,7 @@ var apikey = req.query.apikey
 if (!url) return res.json(loghandler.noturl)
 if (!apikey) return res.json(loghandler.notapikey)
 if(listkey.includes(apikey)){
-let anu = await fetchJson(`https://api.botcahx.biz.id/api/dowloader/tikok?url=${url}&apikey=Admin`)
+let anu = await fetchJson(`https://api.lolhuman.xyz/api/tiktok?url=${url}&apikey=b9972cae27237ab59e8aa1a6`)
 res.json({
 status: true,
 creator: `${creator}`,
@@ -1317,5 +1317,4 @@ res.send(result)
 res.json(loghandler.notapikey)
 }
 })
-
 module.exports = router
