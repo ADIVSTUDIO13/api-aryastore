@@ -5,7 +5,7 @@ global.creator = 'DhaniOfficiall'
 global.listkey = ["apikeynya","turusek"]
 
 //isi agar fitur fitur bisa di gunakan.
-global.lolkey = 'ISI_PUNYA_LOLHUMAN' // Dapatkan di https://api.lolhuman.xyz
+global.lolkey = 'b9972cae27237ab59e8aa1a6' // Dapatkan di https://api.lolhuman.xyz
 global.botkey = 'Admin' // Dapatkan di https://api.botcahx.biz.id
 
 global.loghandler = {
