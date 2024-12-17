@@ -1327,7 +1327,7 @@ res.send(result)
 res.json(loghandler.notapikey)
 }
 })
-- tools entertainet
+//- tools entertainet
 // router.get('/tools/family100' , async (req, res, next) => {
 //    var question = req.question || 'berapa presiden di indonesia?';
 //   var apikey = req.query.apikey;
