@@ -1,8 +1,8 @@
 // YTTA
 
 //settings
-global.creator = 'DhaniOfficiall'
-global.listkey = ["apikeynya","turusek"]
+global.creator = 'ARYAPIV1'
+global.listkey = ["ARYAPIV1","turusek"]
 
 //isi agar fitur fitur bisa di gunakan.
 global.lolkey = 'b9972cae27237ab59e8aa1a6' // Dapatkan di https://api.lolhuman.xyz
