@@ -1,11 +1,11 @@
 // YTTA
 
 //settings
-global.creator = 'ARYASTORE'
-global.listkey = ["ARYASTORE","turusek"]
+global.creator = 'DhaniOfficiall'
+global.listkey = ["apikeynya","turusek"]
 
 //isi agar fitur fitur bisa di gunakan.
-global.lolkey = 'b9972cae27237ab59e8aa1a6' // Dapatkan di https://api.lolhuman.xyz
+global.lolkey = 'ISI_PUNYA_LOLHUMAN' // Dapatkan di https://api.lolhuman.xyz
 global.botkey = 'Admin' // Dapatkan di https://api.botcahx.biz.id
 
 global.loghandler = {
@@ -73,11 +73,6 @@ global.loghandler = {
 	status: false,
 	code: 403,
 	message: '[!] Forbiden or Error, masukan parameter text3',
-  	maintanied_by: `${creator}`
+	maintanied_by: `${creator}`
 }
-// notquestion: {
-//   status: false
-//   code: 403
-//   message: '[!] Forbiden or Error tolong masukkan parameter question',
-//   maintanied_by: `${creator}`
-// }
+}
