@@ -991,43 +991,52 @@ res.json(loghandler.notapikey)
 }
 })
 router.get('/textpro/pornhub', async(req, res, next) => {
-var text1 = req.query.text1
-var text2 = req.query.text2
-var apikey = req.query.apikey
-if (!text1) return res.json(loghandler.nottext1)
-if (!text2) return res.json(loghandler.nottext2)
-if (!apikey) return res.json(loghandler.notapikey)
-if(listkey.includes(apikey)){
-textpro("https://textpro.me/pornhub-style-logo-online-generator-free-977.html", [text1,text2]).then((data) =>{ 
-res.set({'Content-Type': 'image/jpg'})
-res.send(data)
-})
-.catch((err) =>{
-res.json(loghandler.error)
-})
-} else {
-res.json(loghandler.notapikey)
-}
-})
-router.get('/textpro/marvel-studio', async(req, res, next) => {
-var text1 = req.query.text1
-var text2 = req.query.text2
-var apikey = req.query.apikey
-if (!text1) return res.json(loghandler.nottext1)
-if (!text2) return res.json(loghandler.nottext2)
-if (!apikey) return res.json(loghandler.notapikey)
-if(listkey.includes(apikey)){
-textpro("https://textpro.me/create-logo-style-marvel-studios-online-971.html", [text1,text2]).then((data) =>{ 
-res.set({'Content-Type': 'image/jpg'})
-res.send(data)
-})
-.catch((err) =>{
-res.json(loghandler.error)
-})
-} else {
-res.json(loghandler.notapikey)
-}
-})
+router.get('/textpro/marvelstudio', async(req, res, next) => {
+    var text1 = req.query.text1;
+    var text2 = req.query.text2;
+    var apikey = req.query.apikey;
+
+    if (!text1) return res.json(loghandler.nottext1);
+    if (!text2) return res.json(loghandler.nottext2);
+    if (!apikey) return res.json(loghandler.notapikey);
+
+    if (listkey.includes(apikey)) {
+        textpro("https://api.lolhuman.xyz/api/textprome2/marvelstudio?apikey=b9972cae27237ab59e8aa1a6&text1=" + encodeURIComponent(text1) + "&text2=" + encodeURIComponent(text2))
+            .then((data) => {
+                res.set({'Content-Type': 'image/jpg'});
+                res.send(data);
+            })
+            .catch((err) => {
+                res.json(loghandler.error);
+            });
+    } else {
+        res.json(loghandler.notapikey);
+    }
+});
+
+router.get('/textpro/marvelstudio', async (req, res, next) => {
+    var text1 = req.query.text1;
+    var text2 = req.query.text2 || "Human"; // Default contoh untuk text2
+    var apikey = req.query.apikey;
+
+    if (!text1) return res.json(loghandler.nottext1); // Tetap wajib untuk text1
+    if (!apikey) return res.json(loghandler.notapikey);
+
+    if (listkey.includes(apikey)) {
+        const url = `https://api.lolhuman.xyz/api/textprome2/marvelstudio?apikey=${lolkey}&text1=${encodeURIComponent(text1)}&text2=${encodeURIComponent(text2)}`;
+        try {
+            const response = await fetch(url);
+            const buffer = await response.buffer();
+            res.set({ 'Content-Type': 'image/jpg' });
+            res.send(buffer);
+        } catch (err) {
+            res.json(loghandler.error);
+        }
+    } else {
+        res.json(loghandler.notapikey);
+    }
+});
+
 router.get('/textpro/marvel-studio2', async(req, res, next) => {
 var text1 = req.query.text1
 var text2 = req.query.text2
