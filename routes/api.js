@@ -1009,30 +1009,7 @@ res.json(loghandler.error)
 res.json(loghandler.notapikey)
 }
 })
-router.get('/textpro/marvelstudio', async(req, res, next) => {
-    var text1 = req.query.text1;
-    var text2 = req.query.text2;
-    var apikey = req.query.apikey;
-
-    if (!text1) return res.json(loghandler.nottext1);
-    if (!text2) return res.json(loghandler.nottext2);
-    if (!apikey) return res.json(loghandler.notapikey);
-
-    if (listkey.includes(apikey)) {
-        textpro("https://api.lolhuman.xyz/api/textprome2/marvelstudio?apikey=b9972cae27237ab59e8aa1a6&text1=" + encodeURIComponent(text1) + "&text2=" + encodeURIComponent(text2))
-            .then((data) => {
-                res.set({'Content-Type': 'image/jpg'});
-                res.send(data);
-            })
-            .catch((err) => {
-                res.json(loghandler.error);
-            });
-    } else {
-        res.json(loghandler.notapikey);
-    }
-});
-
-router.get('/textpro/marvelstudio', async (req, res, next) => {
+router.get('/textpro/marvel-studio', async (req, res, next) => {
     var text1 = req.query.text1;
     var text2 = req.query.text2 || "Human"; // Default contoh untuk text2
     var apikey = req.query.apikey;
@@ -1041,7 +1018,7 @@ router.get('/textpro/marvelstudio', async (req, res, next) => {
     if (!apikey) return res.json(loghandler.notapikey);
 
     if (listkey.includes(apikey)) {
-        const url = `https://api.lolhuman.xyz/api/textprome2/marvelstudio?apikey=${lolkey}&text1=${encodeURIComponent(text1)}&text2=${encodeURIComponent(text2)}`;
+        const url = `https://api.lolhuman.xyz/api/textprome2/marvelstudio?apikey=${apikey}&text1=${encodeURIComponent(text1)}&text2=${encodeURIComponent(text2)}`;
         try {
             const response = await fetch(url);
             const buffer = await response.buffer();
