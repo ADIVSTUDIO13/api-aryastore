@@ -1011,10 +1011,11 @@ res.json(loghandler.notapikey)
 })
 router.get('/textpro/marvel-studio', async (req, res, next) => {
     var text1 = req.query.text1;
-    var text2 = req.query.text2 || "Human"; // Default contoh untuk text2
+    var text2 = req.query.text2;
     var apikey = req.query.apikey;
 
-    if (!text1) return res.json(loghandler.nottext1); // Tetap wajib untuk text1
+    if (!text1) return res.json(loghandler.nottext1);
+    if (!text2) return res.json(loghandler.nottext2);
     if (!apikey) return res.json(loghandler.notapikey);
 
     if (listkey.includes(apikey)) {
@@ -1031,6 +1032,7 @@ router.get('/textpro/marvel-studio', async (req, res, next) => {
         res.json(loghandler.notapikey);
     }
 });
+
 
 router.get('/textpro/marvel-studio2', async(req, res, next) => {
 var text1 = req.query.text1
