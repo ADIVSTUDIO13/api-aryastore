@@ -991,6 +991,24 @@ res.json(loghandler.notapikey)
 }
 })
 router.get('/textpro/pornhub', async(req, res, next) => {
+var text1 = req.query.text1
+var text2 = req.query.text2
+var apikey = req.query.apikey
+if (!text1) return res.json(loghandler.nottext1)
+if (!text2) return res.json(loghandler.nottext2)
+if (!apikey) return res.json(loghandler.notapikey)
+if(listkey.includes(apikey)){
+textpro("https://textpro.me/pornhub-style-logo-online-generator-free-977.html", [text1,text2]).then((data) =>{ 
+res.set({'Content-Type': 'image/jpg'})
+res.send(data)
+})
+.catch((err) =>{
+res.json(loghandler.error)
+})
+} else {
+res.json(loghandler.notapikey)
+}
+})
 router.get('/textpro/marvelstudio', async(req, res, next) => {
     var text1 = req.query.text1;
     var text2 = req.query.text2;
