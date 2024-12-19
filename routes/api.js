@@ -17,7 +17,7 @@ var apikey = req.query.apikey
 if (!url) return res.json(loghandler.noturl)  
 if (!apikey) return res.json(loghandler.notapikey)
 if(listkey.includes(apikey)){
-let anu = await fetchJson(`https://api.botcahx.biz.id/api/dowloader/fbdown?url=${url}&apikey=b9972cae27237ab59e8aa1a6`)
+let anu = await fetchJson(`https://api.botcahx.biz.id/api/dowloader/fbdown?url=${url}&apikey=Admin`)
 res.json({
 status: true,
 creator: `${creator}`,
@@ -28,31 +28,21 @@ res.json(loghandler.notapikey)
 }
 })
 router.get('/downloader/tiktok', async (req, res, next) => {
-    var url = req.query.url || 'https://vt.tiktok.com/ZS6R7NgUs/'; // Tambahkan URL default
-    var apikey = req.query.apikey;
-
-    if (!apikey) return res.json(loghandler.notapikey); // Periksa API key
-
-    if (listkey.includes(apikey)) { // Validasi API key
-        try {
-            let anu = await fetchJson(`https://api.lolhuman.xyz/api/tiktok?url=${url}&apikey=b9972cae27237ab59e8aa1a6`);
-            res.json({
-                status: true,
-                creator: `${creator}`,
-                result: anu.result
-            });
-        } catch (error) {
-            res.json({
-                status: false,
-                message: "Error fetching data from API.",
-                error: error.message
-            });
-        }
-    } else {
-        res.json(loghandler.notapikey);
-    }
-});
-
+var url = req.query.url
+var apikey = req.query.apikey
+if (!url) return res.json(loghandler.noturl)
+if (!apikey) return res.json(loghandler.notapikey)
+if(listkey.includes(apikey)){
+let anu = await fetchJson(`https://api.lolhuman.xyz/api/tiktok?url=${url}&apikey=149cdceb8dc345b7f427107b`)
+res.json({
+status: true,
+creator: `${creator}`,
+result: anu.result
+})
+} else {
+res.json(loghandler.notapikey)
+}
+})
 router.get('/downloader/ytplay', async (req, res, next) => {
 var q = req.query.q
 var apikey = req.query.apikey
@@ -1009,31 +999,25 @@ res.json(loghandler.error)
 res.json(loghandler.notapikey)
 }
 })
-router.get('/textpro/marvel-studio', async (req, res, next) => {
-    var text1 = req.query.text1;
-    var text2 = req.query.text2;
-    var apikey = req.query.apikey;
-
-    if (!text1) return res.json(loghandler.nottext1);
-    if (!text2) return res.json(loghandler.nottext2);
-    if (!apikey) return res.json(loghandler.notapikey);
-
-    if (listkey.includes(apikey)) {
-        const url = `https://api.lolhuman.xyz/api/textprome2/marvelstudio?apikey=${apikey}&text1=${encodeURIComponent(text1)}&text2=${encodeURIComponent(text2)}`;
-        try {
-            const response = await fetch(url);
-            const buffer = await response.buffer();
-            res.set({ 'Content-Type': 'image/jpg' });
-            res.send(buffer);
-        } catch (err) {
-            res.json(loghandler.error);
-        }
-    } else {
-        res.json(loghandler.notapikey);
-    }
-});
-
-
+router.get('/textpro/marvel-studio', async(req, res, next) => {
+var text1 = req.query.text1
+var text2 = req.query.text2
+var apikey = req.query.apikey
+if (!text1) return res.json(loghandler.nottext1)
+if (!text2) return res.json(loghandler.nottext2)
+if (!apikey) return res.json(loghandler.notapikey)
+if(listkey.includes(apikey)){
+textpro("https://textpro.me/create-logo-style-marvel-studios-online-971.html", [text1,text2]).then((data) =>{ 
+res.set({'Content-Type': 'image/jpg'})
+res.send(data)
+})
+.catch((err) =>{
+res.json(loghandler.error)
+})
+} else {
+res.json(loghandler.notapikey)
+}
+})
 router.get('/textpro/marvel-studio2', async(req, res, next) => {
 var text1 = req.query.text1
 var text2 = req.query.text2
@@ -1321,28 +1305,17 @@ res.json(loghandler.notapikey)
 
 // - TOOLS MENU - \\
 router.get('/tools/ssweb', async (req, res, next) => {
-    var url = req.query.url;
-    var apikey = req.query.apikey;
-
-    if (!url) return res.json(loghandler.noturl);
-    if (!apikey) return res.json(loghandler.notapikey);
-
-    if (listkey.includes(apikey)) {
-        try {
-            // Gunakan API yang diminta
-            let result = await getBuffer(`https://api.lolhuman.xyz/api/ssweb?apikey=b9972cae27237ab59e8aa1a6&url=${url}`);
-            res.set({ 'Content-Type': 'image/jpg' });
-            res.send(result);
-        } catch (error) {
-            console.error(error);
-            res.json({
-                status: false,
-                message: "Terjadi kesalahan saat mengambil screenshot web."
-            });
-        }
-    } else {
-        res.json(loghandler.notapikey);
-    }
-});
+var url = req.query.url
+var apikey = req.query.apikey
+if (!url) return res.json(loghandler.noturl)
+if (!apikey) return res.json(loghandler.notapikey)
+if(listkey.includes(apikey)){
+let result = await getBuffer(`https://saipulanuar.ga/api/download/ssweb?url=${url}`)
+res.set({'Content-Type': 'image/jpg'})
+res.send(result)
+} else {
+res.json(loghandler.notapikey)
+}
+})
 
 module.exports = router
