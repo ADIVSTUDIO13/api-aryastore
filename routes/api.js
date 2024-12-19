@@ -1317,5 +1317,18 @@ res.send(result)
 res.json(loghandler.notapikey)
 }
 })
-
+//- tools family100
+router.get('tools/family100' , async (req, res, next) => {
+  var question = req.query.question
+  var apikey = req.query.apikey
+  if (!question) return res.json(loghandler.notquestion)
+  if (!apikey) return res.json(loghandler.notapikey)
+if(listkey.includes(apikey)){
+  let result = await getBuffer('https://api.lolhuman.xyz/api/tebak/family100?apikey=b9972cae27237ab59e8aa1a6`)
+  res.set({'Content-Type': 'text/plaint'})
+  res.send(result)
+} else {
+res.json(loghandler.notapikey)
+}
+})
 module.exports = router
