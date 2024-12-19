@@ -1,7 +1,7 @@
 // YTTA
 
 //settings
-global.creator = 'DhaniOfficiall'
+global.creator = 'ARYAPIV1'
 global.listkey = ["ARYAPIV1","turusek"]
 
 //isi agar fitur fitur bisa di gunakan.
@@ -73,12 +73,6 @@ global.loghandler = {
 	status: false,
 	code: 403,
 	message: '[!] Forbiden or Error, masukan parameter text3',
-	maintanied_by: `${creator}`
-	},
-	notquestion: {
-	status: false
-	code: 403,
-	message: '[!] Forbiden or Error, masukan parameter question',
 	maintanied_by: `${creator}`
 }
 }
