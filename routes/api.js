@@ -1317,29 +1317,21 @@ res.send(result)
 res.json(loghandler.notapikey)
 }
 })
-// tools family100
+// - TOOLS MENU - \\
 router.get('/tools/family100', async (req, res, next) => {
-  try {
-    const question = req.query.question;
-    const apikey = req.query.apikey;
-
-    // Validasi input
-    if (!question) return res.json(loghandler.notquestion);
+    var question = req.query.question; // Ganti parameter dari url ke question
+    var apikey = req.query.apikey;
+    if (!question) return res.json(loghandler.notquestion); // Periksa jika tidak ada question
     if (!apikey) return res.json(loghandler.notapikey);
 
-    // Validasi API Key
     if (listkey.includes(apikey)) {
-      const result = await getBuffer('https://api.lolhuman.xyz/api/tebak/family100?apikey=b9972cae27237ab59e8aa1a6');
-      
-      res.set({ 'Content-Type': 'text/plain' });
-      res.send(result);
+        let result = await getBuffer(`https://api.lolhuman.xyz/api/tebak/family100?apikey=b9972cae27237ab59e8aa1a6`);
+        res.set({'Content-Type': 'application/json'});
+        res.send(result); // Kirimkan hasil sebagai JSON
     } else {
-      res.json(loghandler.invalidapikey);
+        res.json(loghandler.notapikey);
     }
-  } catch (error) {
-    console.error(error);
-    res.json({ status: false, message: 'Internal Server Error' });
-  }
 });
+
 
 module.exports = router
