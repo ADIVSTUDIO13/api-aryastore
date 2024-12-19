@@ -1317,21 +1317,20 @@ res.send(result)
 res.json(loghandler.notapikey)
 }
 })
-// - TOOLS MENU - \\
-router.get('/tools/family100', async (req, res, next) => {
-    var question = req.query.question; // Ganti parameter dari url ke question
+/router.get('/tools/family100', async (req, res, next) => {
+    var question = req.query.question;
     var apikey = req.query.apikey;
-    if (!question) return res.json(loghandler.notquestion); // Periksa jika tidak ada question
+    if (!question) return res.json(loghandler.notquestion);
     if (!apikey) return res.json(loghandler.notapikey);
 
     if (listkey.includes(apikey)) {
-        let result = await getBuffer(`https://api.lolhuman.xyz/api/tebak/family100?apikey=b9972cae27237ab59e8aa1a6`);
+        let encodedQuestion = encodeURIComponent(question);
+        let result = await getBuffer(`https://api.lolhuman.xyz/api/tebak/family100?question=${encodedQuestion}&apikey=b9972cae27237ab59e8aa1a6`);
         res.set({'Content-Type': 'application/json'});
-        res.send(result); // Kirimkan hasil sebagai JSON
+        res.send(result);
     } else {
         res.json(loghandler.notapikey);
     }
 });
-
 
 module.exports = router
