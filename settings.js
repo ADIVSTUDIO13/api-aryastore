@@ -76,7 +76,7 @@ global.loghandler = {
   	maintanied_by: `${creator}`
 },
 notquestion: {
-  status: false,
-  code: 403,
-  message: '[!] Forbiden or error, silahkan masukkan parameter question',
-  maintanied_by: `${creator}`
+	status: false,
+	code: 403,
+	message: '[!] Forbiden or Error, masukan parameter text3',
+  	maintanied_by: `${creator}`
