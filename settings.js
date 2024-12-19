@@ -78,6 +78,6 @@ global.loghandler = {
 notquestion: {
   status: false,
   code: 403,
-  message: '[!] Forbiden or error , silahkan masukkan parameter question',
+  message: '[!] Forbiden or error, silahkan masukkan parameter question',
   maintanied_by: `${creator}`
 },
