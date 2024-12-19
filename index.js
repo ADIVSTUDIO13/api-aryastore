@@ -11,7 +11,7 @@ var secure = require('ssl-express-www');
 
 const PORT = process.env.PORT || 8080 || 5000 || 3000;
 
-// Image title (ensure favicon exists at the given path)
+// Image title
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 var main = require('./routes/main');
