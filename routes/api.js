@@ -1317,7 +1317,7 @@ res.send(result)
 res.json(loghandler.notapikey)
 }
 })
-/router.get('/tools/family100', async (req, res, next) => {
+router.get('/tools/family100', async (req, res, next) => {
     var question = req.query.question;
     var apikey = req.query.apikey;
     if (!question) return res.json(loghandler.notquestion);
@@ -1325,7 +1325,7 @@ res.json(loghandler.notapikey)
 
     if (listkey.includes(apikey)) {
         let encodedQuestion = encodeURIComponent(question);
-        let result = await getBuffer(`https://api.lolhuman.xyz/api/tebak/family100?question=${encodedQuestion}&apikey=b9972cae27237ab59e8aa1a6`);
+        let result = await getBuffer(`https://api.lolhuman.xyz/api/tebak/family100?question=${encodedQuestion}&apikey=${lolkey}`);
         res.set({'Content-Type': 'application/json'});
         res.send(result);
     } else {
