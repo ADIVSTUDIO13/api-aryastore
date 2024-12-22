@@ -227,48 +227,22 @@ result: anu.result
 res.json(loghandler.notapikey)
 }
 })
-router.get('/islamic/niatsholat', async (req, res) => {
-    const q = req.query.q;
-    const apikey = req.query.apikey;
-
-    // Validasi parameter query
-    if (!q) return res.json({ status: false, message: "Parameter 'q' tidak ditemukan" });
-    if (!apikey) return res.json({ status: false, message: "Parameter 'apikey' tidak ditemukan" });
-
-    // Validasi API Key
-    if (listkey.includes(apikey)) {
-        try {
-            // Fetch data dari API eksternal
-            const response = await fetch(`https://api.lolhuman.xyz/api/niatsholat/${q}?apikey=${lolkey}`);
-            const anu = await response.json();
-
-            // Pastikan data yang dibutuhkan ada
-            if (anu.status === true && anu.result) {
-                const { name, ar, latin, id } = anu.result;
-
-                return res.json({
-                    status: true,
-                    creator: creator,
-                    result: {
-                        name: name || null,
-                        ar: ar || null,
-                        latin: latin || null,
-                        id: id || null
-                    }
-                });
-            } else {
-                return res.json({ status: false, message: "Data tidak ditemukan atau respons API tidak valid" });
-            }
-        } catch (error) {
-            // Tangani kesalahan dari fetch
-            console.error(error);
-            return res.json({ status: false, message: "Terjadi kesalahan saat mengambil data dari API eksternal" });
-        }
-    } else {
-        // Jika API key tidak valid
-        return res.json({ status: false, message: "API key tidak valid" });
-    }
-});
+router.get('/islamic/niatsholat', async (req, res, next) => {
+var q = req.query.q
+var apikey = req.query.apikey
+if (!q) return res.json(loghandler.notq)
+if (!apikey) return res.json(loghandler.notapikey)
+if(listkey.includes(apikey)){
+let anu = await fetchJson(`https://api.lolhuman.xyz/api/niatsholat/${q}?apikey=${lolkey}`)
+res.json({
+status: true,
+creator: `${creator}`,
+result: anu.result
+})
+} else {
+res.json(loghandler.notapikey)
+}
+})
 router.get('/islamic/ayat', async (req, res, next) => {
 var surah = req.query.surah
 var ayat = req.query.ayat
@@ -1358,5 +1332,21 @@ router.get('/tools/family100', async (req, res, next) => {
         res.json(loghandler.notapikey);
     }
 });
+router.get('/downloader/pinterest', async (req, res, next) => {
+    var url = req.query.url
+    var apikey = req.query.apikey
+    if (!url) return res.json(loghandler.noturl)
+    if (!apikey) return res.json(loghandler.notapikey)
+    if (listkey.includes(apikey)) {
+        let anu = await fetchJson(`https://api.lolhuman.xyz/api/pinterestdl?apikey=183266a06a407fc8b482b844&url=${url}`)
+        res.json({
+            status: true,
+            creator: `${creator}`,
+            result: anu.result
+        })
+    } else {
+        res.json(loghandler.notapikey)
+    }
+})
 
 module.exports = router
