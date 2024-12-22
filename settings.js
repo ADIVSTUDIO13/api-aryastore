@@ -5,7 +5,7 @@ global.creator = 'ARYAPIV1'
 global.listkey = ["ARYAPIV1","turusek"]
 
 //isi agar fitur fitur bisa di gunakan.
-global.lolkey = 'b9972cae27237ab59e8aa1a6' // Dapatkan di https://api.lolhuman.xyz
+global.lolkey = '183266a06a407fc8b482b844' // Dapatkan di https://api.lolhuman.xyz
 global.botkey = 'Admin' // Dapatkan di https://api.botcahx.biz.id
 
 global.loghandler = {
