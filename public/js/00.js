@@ -21,16 +21,21 @@ danzz.open("GET",url,true);
 danzz.send();
 }
 
-//Baterry
-tag_battery_status = document.querySelector('div#battery_status');
-tag_battery_level = document.querySelector('div#battery_level');
-     setInterval(function() {
-         navigator.getBattery().then(battery=> {
-             battery_level = String(battery.level).split('.')[1];
-             tag_battery_level.innerHTML = `${(battery_level.length <= 1)? oud(Number(battery_level)): battery_level}% ${battery.charging ? 'charging': 'discharging'}`;
-         });
-     },
-         10);
+// Battery
+const tag_battery_status = document.querySelector('div#battery_status');
+const tag_battery_level = document.querySelector('div#battery_level');
+
+setInterval(function () {
+    navigator.getBattery().then(battery => {
+        const batteryLevel = Math.round(battery.level * 100); // Convert to percentage
+        const chargingStatus = battery.charging ? 'charging' : 'discharging';
+
+        if (tag_battery_level) {
+            tag_battery_level.innerHTML = `${batteryLevel}% ${chargingStatus}`;
+        }
+    });
+}, 1000); // Check every second
+
 
 // Date
 myMonths = ["January","February","March","April","May","June","July","August","September","October","November","December"];
