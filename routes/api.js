@@ -1348,22 +1348,31 @@ router.get('/downloader/pinterest', async (req, res, next) => {
         res.json(loghandler.notapikey)
     }
 })
-router.get('/search/pinterest', async (req, res, next) => {
-    var query = req.query.query
-    var apikey = req.query.apikey
-    if (!query) return res.json(loghandler.notquery)  // Mengganti noturl menjadi notquery
-    if (!apikey) return res.json(loghandler.notapikey)
-    if (listkey.includes(apikey)) {
-        let anu = await fetchJson(`https://api.lolhuman.xyz/api/pinterest?apikey=183266a06a407fc8b482b844&query=${encodeURIComponent(query)}`)
-        res.json({
-            status: true,
-            creator: `${creator}`,
-            result: anu.result
-        })
-    } else {
-        res.json(loghandler.notapikey)
-    }
-})
+router.get('/downloader/pinterest', async (req, res, next) => {
+    var query = req.query.query; // Menggunakan parameter 'query' untuk pencarian
+    var apikey = req.query.apikey;
 
+    if (!query) return res.json(loghandler.notquery); // Validasi jika 'query' kosong
+    if (!apikey) return res.json(loghandler.notapikey); // Validasi jika 'apikey' kosong
+
+    if (listkey.includes(apikey)) {
+        try {
+            let anu = await fetchJson(`https://api.lolhuman.xyz/api/pinterest?apikey=149cdceb8dc345b7f427107b&query=${encodeURIComponent(query)}`);
+            res.json({
+                status: true,
+                creator: `${creator}`,
+                result: anu.result
+            });
+        } catch (error) {
+            res.json({
+                status: false,
+                message: 'Error while fetching data from API',
+                error: error.message
+            });
+        }
+    } else {
+        res.json(loghandler.notapikey); // Jika API key tidak valid
+    }
+});
 
 module.exports = router
