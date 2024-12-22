@@ -27,12 +27,6 @@ global.loghandler = {
     	message: '[!] Forbiden or Error, masukan parameter url',
     	maintanied_by: `${creator}`
     },
-    notquery: { // Menambahkan notquery
-    	status: false,
-    	code: 404,
-    	message: '[!] Forbiden or Error, masukan parameter query',
-    	maintanied_by: `${creator}`
-    },
     notq: {
     	status: false,
     	code: 404,
@@ -86,5 +80,11 @@ global.loghandler = {
     	code: 404,
     	message: '[!] Forbiden or Error, masukan parameter question',
     	maintanied_by: `${creator}`
+    	},
+    	notquery: {
+        status: false,
+        code: 404,
+        message: '[!] Forbidden or Error, masukan parameter query',
+        maintanied_by: `${creator}`
 	}
 }
