@@ -33,7 +33,7 @@ var apikey = req.query.apikey
 if (!url) return res.json(loghandler.noturl)
 if (!apikey) return res.json(loghandler.notapikey)
 if(listkey.includes(apikey)){
-let anu = await fetchJson(`https://api.lolhuman.xyz/api/tiktok?url=${url}&apikey=149cdceb8dc345b7f427107b`)
+let anu = await fetchJson(`https://api.lolhuman.xyz/api/tiktok?url=${url}&apikey=aryaapiadmin`)
 res.json({
 status: true,
 creator: `${creator}`,
