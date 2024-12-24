@@ -365,7 +365,7 @@ router.get('/search/pinterest', async (req, res, next) => {
 
     if (listkey.includes(apikey)) {
         try {
-            let anu = await fetchJson(`https://api.lolhuman.xyz/api/pinterest?apikey=149cdceb8dc345b7f427107b&query=${encodeURIComponent(q)}`);
+            let anu = await fetchJson(`https://api.lolhuman.xyz/api/pinterest?apikey=aryaapiadmin&query=${encodeURIComponent(q)}`);
             res.json({
                 status: true,
                 creator: `${creator}`,
