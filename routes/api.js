@@ -1349,7 +1349,7 @@ router.get('/downloader/pinterest', async (req, res, next) => {
     if (!url) return res.json(loghandler.noturl)
     if (!apikey) return res.json(loghandler.notapikey)
     if (listkey.includes(apikey)) {
-        let anu = await fetchJson(`https://api.lolhuman.xyz/api/pinterestdl?apikey=183266a06a407fc8b482b844&url=${url}`)
+        let anu = await fetchJson(`https://api.lolhuman.xyz/api/pinterestdl?apikey=aryaapiadmin&url=${url}`)
         res.json({
             status: true,
             creator: `${creator}`,
