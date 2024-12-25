@@ -1359,5 +1359,34 @@ router.get('/downloader/pinterest', async (req, res, next) => {
         res.json(loghandler.notapikey)
     }
 })
+router.get('/search/spotify', async (req, res, next) => {
+  var q = req.query.q;  // Changed back to 'q' as per your request
+  var apikey = req.query.apikey;
+
+  if (!q) return res.json(loghandler.notq);
+  if (!apikey) return res.json(loghandler.notapikey);
+
+  if (listkey.includes(apikey)) {
+    try {
+      // Fetch data from the new Spotify search API
+      let response = await fetchJson(`https://api.lolhuman.xyz/api/spotifysearch?apikey=aryaapiadmin&query=${encodeURIComponent(q)}`);
+      
+      // Respond with the data fetched from the API
+      res.json({
+        status: true,
+        creator: `${creator}`,
+        result: response.result
+      });
+    } catch (error) {
+      // Handle any errors that occur during the fetch operation
+      res.json({
+        status: false,
+        message: 'Failed to fetch data from the API.'
+      });
+    }
+  } else {
+    res.json(loghandler.notapikey);
+  }
+});
 
 module.exports = router
