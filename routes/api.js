@@ -1388,5 +1388,38 @@ router.get('/search/spotify', async (req, res, next) => {
     res.json(loghandler.notapikey);
   }
 });
+router.get('/search/stickerwa', async (req, res, next) => {
+  const q = req.query.q;
+  const apikey = req.query.apikey;
+
+  if (!q) return res.json(loghandler.notq);
+  if (!apikey) return res.json(loghandler.notapikey);
+
+  if (!listkey.includes(apikey)) {
+    return res.json(loghandler.notapikey);
+  }
+
+  try {
+    const response = await fetchJson(`https://api.lolhuman.xyz/api/stickerwa?apikey=aryaapiadmin&query=${encodeURIComponent(q)}`);
+
+    if (response && response.result) {
+      return res.json({
+        status: true,
+        creator: `${creator}`,
+        result: response.result
+      });
+    } else {
+      return res.json({
+        status: false,
+        message: 'No results found.'
+      });
+    }
+  } catch (error) {
+    return res.json({
+      status: false,
+      message: 'Failed to fetch data from the API.'
+    });
+  }
+});
 
 module.exports = router
