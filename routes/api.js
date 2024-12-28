@@ -33,7 +33,7 @@ var apikey = req.query.apikey
 if (!url) return res.json(loghandler.noturl)
 if (!apikey) return res.json(loghandler.notapikey)
 if(listkey.includes(apikey)){
-let anu = await fetchJson(`https://api.lolhuman.xyz/api/tiktok?url=${url}&apikey=aryaapiadmin`)
+let anu = await fetchJson(`https://api.lolhuman.xyz/api/tiktok?url=${url}&apikey=aryaapiadmin90`)
 res.json({
 status: true,
 creator: `${creator}`,
@@ -365,7 +365,7 @@ router.get('/search/pinterest', async (req, res, next) => {
 
     if (listkey.includes(apikey)) {
         try {
-            let anu = await fetchJson(`https://api.lolhuman.xyz/api/pinterest?apikey=aryaapiadmin&query=${encodeURIComponent(q)}`);
+            let anu = await fetchJson(`https://api.lolhuman.xyz/api/pinterest?apikey=aryaapiadmin90&query=${encodeURIComponent(q)}`);
             res.json({
                 status: true,
                 creator: `${creator}`,
@@ -1360,7 +1360,7 @@ router.get('/downloader/pinterest', async (req, res, next) => {
     }
 })
 router.get('/search/spotify', async (req, res, next) => {
-  var q = req.query.q;  // Changed back to 'q' as per your request
+  var q = req.query.q;
   var apikey = req.query.apikey;
 
   if (!q) return res.json(loghandler.notq);
@@ -1401,6 +1401,65 @@ router.get('/search/stickerwa', async (req, res, next) => {
 
   try {
     const response = await fetchJson(`https://api.lolhuman.xyz/api/stickerwa?apikey=aryaapiadmin&query=${encodeURIComponent(q)}`);
+
+    if (response && response.result) {
+      return res.json({
+        status: true,
+        creator: `${creator}`,
+        result: response.result
+      });
+    } else {
+      return res.json({
+        status: false,
+        message: 'No results found.'
+      });
+    }
+  } catch (error) {
+    return res.json({
+      status: false,
+      message: 'Failed to fetch data from the API.'
+    });
+  }
+});
+router.get('/downloader/tiktokmusic', async (req, res, next) => {
+    var url = req.query.url;
+    var apikey = req.query.apikey;
+
+    if (!url) return res.json(loghandler.noturl);
+    if (!apikey) return res.json(loghandler.notapikey);
+
+    if (listkey.includes(apikey)) {
+        try {
+            let anu = await fetchJson(`https://api.lolhuman.xyz/api/tiktokmusic?apikey=aryaapiadmin&url=${url}`);
+            res.json({
+                status: true,
+                creator: `${creator}`,
+                result: anu.result
+            });
+        } catch (error) {
+            res.json({
+                status: false,
+                message: "Failed to fetch data from TikTok Music API",
+                error: error.message
+            });
+        }
+    } else {
+        res.json(loghandler.notapikey);
+    }
+});
+router.get('/search/google', async (req, res, next) => {
+  const q = req.query.q;
+  const apikey = req.query.apikey;
+
+  if (!q) return res.json(loghandler.notq);
+  if (!apikey) return res.json(loghandler.notapikey);
+
+  if (!listkey.includes(apikey)) {
+    return res.json(loghandler.notapikey);
+  }
+
+  try {
+    const response = await fetchJson(`https://api.lolhuman.xyz/api/gsearch?apikey=aryaapiadmin&query=${encodeURIComponent(q)}`);
 
     if (response && response.result) {
       return res.json({
